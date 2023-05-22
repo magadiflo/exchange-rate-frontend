@@ -13,6 +13,10 @@ export class ExchangeRateService {
 
   constructor(private _http: HttpClient) { }
 
+  getExchangeRatesList(): Observable<Conversion[]> {
+    return this._http.get<Conversion[]>(`${URL}/exchange-rates`);
+  }
+
   getDataConversion(baseId: number, quoteId: number): Observable<Conversion> {
     return this._http.get<Conversion>(`${URL}/exchange-rates/base/${baseId}/quote/${quoteId}`);
   }

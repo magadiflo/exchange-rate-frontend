@@ -1,4 +1,5 @@
 export interface Conversion {
+  id?: number;
   base: Currency;
   quote: Currency;
   conversion: number;
