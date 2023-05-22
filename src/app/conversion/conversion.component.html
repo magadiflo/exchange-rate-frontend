@@ -6,14 +6,14 @@
         <label for="base" class="form-label">Moneda Origen</label>
         <select id="base" class="form-select">
           <option value="" selected>-Seleccionar-</option>
-          <option>USD</option>
+          <option *ngFor="let base of baseList" [value]="base.id">{{base.name}}</option>
         </select>
       </div>
       <div class="mb-3">
         <label for="quote" class="form-label">Moneda Destino</label>
         <select id="quote" class="form-select">
           <option value="" selected>-Seleccionar-</option>
-          <option>PEN</option>
+          <option *ngFor="let quote of quoteList" [value]="quote.id">{{quote.name}}</option>
         </select>
       </div>
       <div class="mb-3">
