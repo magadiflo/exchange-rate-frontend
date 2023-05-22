@@ -1,40 +1,38 @@
 <h1 class="border-bottom text-center my-3 pb-3">Tipo de cambio</h1>
 <div class="row">
   <div class="col-12 col-sm-6 mb-3">
-    <form>
+    <form [formGroup]="miFormulario">
+      <div class="mb-3">
+        <label for="amount" class="form-label">Monto</label>
+        <input type="number" formControlName="amount" class="form-control" id="amount">
+      </div>
       <div class="mb-3">
         <label for="base" class="form-label">Moneda Origen</label>
-        <select id="base" class="form-select">
-          <option value="" selected>-Seleccionar-</option>
+        <select id="base" formControlName="base" class="form-select">
           <option *ngFor="let base of baseList" [value]="base.id">{{base.name}}</option>
         </select>
       </div>
       <div class="mb-3">
         <label for="quote" class="form-label">Moneda Destino</label>
-        <select id="quote" class="form-select">
-          <option value="" selected>-Seleccionar-</option>
+        <select id="quote" formControlName="quote" class="form-select">
           <option *ngFor="let quote of quoteList" [value]="quote.id">{{quote.name}}</option>
         </select>
       </div>
-      <div class="mb-3">
-        <label for="amount" class="form-label">Monto</label>
-        <input type="number" class="form-control" id="amount">
-      </div>
       <div class="d-flex justify-content-end">
-        <button type="button" (click)="guardar()" class="btn btn-outline-success">Efectuar cambio</button>
+        <button type="button" [disabled]="miFormulario.invalid" (click)="guardar()" class="btn btn-outline-success">Efectuar cambio</button>
       </div>
     </form>
   </div>
   <div class="col-12 col-sm-6">
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title border-bottom">USD/PEN</h5>
-        <h3>3.69</h3>
+        <h5 class="card-title border-bottom">{{ baseIsoCode }}/{{ quoteIsoCode }}</h5>
+        <h3>{{ conversionValue }}</h3>
       </div>
     </div>
     <ul class="list-group">
       <li class="list-group-item active" aria-current="true">
-        <h1>PEN 36.90</h1>
+        <h1>{{ quoteIsoCode }} {{ calculationMade | number: '.2-2'}}</h1>
       </li>
     </ul>
   </div>
